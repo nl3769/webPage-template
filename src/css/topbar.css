@@ -1,0 +1,51 @@
+/* topbar.css */
+.top-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.logo-container img {
+  height: 50px; /* taille fixe réaliste */
+  width: auto; /* garde les proportions */
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-links button,
+.nav-links a {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+}
+
+.nav-links button:hover,
+.nav-links a:hover {
+  color: #ffd700;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Si tu veux un bouton actif */
+.nav-links button.active {
+  color: #ffd700;
+  font-weight: 600;
+}

@@ -5,15 +5,23 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist -b gh-pages --repo git@github.com:nl3769/webPage-template.git"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
+    "bootstrap": "^5.3.8",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-bootstrap": "^2.10.10",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.30.3"
   },
   "devDependencies": {
+    "@vitejs/plugin-react-swc": "^3.2.0",
+    "gh-pages": "^6.3.0",
     "typescript": "^5.2.0",
-    "vite": "^5.4.21",
-    "@vitejs/plugin-react-swc": "^3.2.0"
-  }
+    "vite": "^5.4.21"
+  },
+  "homepage": "https://nl3769.github.io/webPage-template"
 }

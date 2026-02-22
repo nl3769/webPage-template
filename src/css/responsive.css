@@ -1,0 +1,21 @@
+/* responsive.css */
+@media (max-width: 900px) {
+  .top-bar {
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 20px;
+  }
+
+  .contact-container {
+    flex-direction: column;
+  }
+
+  .carousel-image-container {
+    width: 300px;
+    height: 225px;
+  }
+
+  .hero h2 {
+    font-size: 36px;
+  }
+}
