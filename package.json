@@ -7,20 +7,29 @@
     "build": "vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist -b gh-pages --repo git@github.com:nl3769/webPage-template.git"
+    "deploy": "gh-pages -d dist -b gh-pages --repo git@github.com:nl3769/webPage-template.git",
+    "start": "ts-node backend/server.ts"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "bootstrap": "^5.3.8",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "mongodb": "^6.21.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.30.3"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.3.0",
     "@vitejs/plugin-react-swc": "^3.2.0",
     "gh-pages": "^6.3.0",
-    "typescript": "^5.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3",
     "vite": "^5.4.21"
   },
   "homepage": "https://nl3769.github.io/webPage-template"
