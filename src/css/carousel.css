@@ -1,137 +1,139 @@
-/* carousel.css */
-
-/* Container principal du carousel + formulaire + avis */
 .carousel {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px; /* espace entre les éléments */
+  gap: 20px;
+  padding: 20px;
   font-family: Arial, sans-serif;
+  box-sizing: border-box;
+  width: 100%;
 }
 
-/* Container de l'image */
 .carousel-image-container {
   position: relative;
-  width: 600px;
-  height: 500px;
-  border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  border-radius: 10px;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
-/* Images */
 .carousel-image-container img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  display: block;
+  border-radius: 10px;
+  height: auto;
 }
 
-/* Flèches de navigation */
 .nav {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 30px;
+  font-size: 2rem;
   color: #fff;
   cursor: pointer;
   user-select: none;
-  padding: 5px 12px;
-  border-radius: 5px;
-  background: rgba(0,0,0,0.3);
-  transition: background 0.3s ease;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 5px 10px;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+  z-index: 2;
 }
 
 .nav:hover {
-  background: rgba(0,0,0,0.6);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
-.nav.left { left: 10px; }
-.nav.right { right: 10px; }
-
-/* Formulaire avis */
-.carousel form,
-.carousel > div[style] {
-  width: 600px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.nav.left {
+  left: 10px;
 }
 
-.carousel label {
-  display: flex;
-  flex-direction: column;
-  font-weight: bold;
-  font-size: 14px;
+.nav.right {
+  right: 10px;
 }
 
-.carousel input[type="number"] {
-  width: 60px;
-  padding: 5px;
-  margin-top: 5px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-
-.carousel textarea {
-  width: 100%;
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  resize: vertical;
-  margin-top: 5px;
-  font-family: inherit;
-}
-
-/* Bouton envoyer avis */
-.carousel button {
+.comment-button {
   padding: 10px 20px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  background-color: #007bff;
+  background-color: #ff7e5f;
   color: #fff;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.carousel button:hover {
-  background-color: #0056b3;
-}
-
-.carousel button:disabled {
-  background-color: #999;
-  cursor: not-allowed;
-}
-
-/* Liste des avis */
-.avis-list {
-  width: 600px;
-  max-height: 300px;
-  overflow-y: auto;
-  border-radius: 10px;
-  padding: 15px;
-  background-color: #f5f5f5;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
-}
-
-.avis-list h3 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  font-size: 18px;
+  transition: background-color 0.2s;
+  width: 90%;
+  max-width: 600px;
   text-align: center;
 }
 
-.avis-list ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.comment-button:hover {
+  background-color: #feb47b;
 }
 
-.avis-list li {
-  padding: 8px 10px;
-  margin-bottom: 8px;
-  background-color: #fff;
-  border-radius: 6px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  font-size: 14px;
+/* Modal overlay avec flou */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+/* Modal content centré et responsive */
+.modal-content {
+  background: #333;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  max-height: 90%;
+  width: 90%;
+  max-width: 500px;
+  overflow-y: auto;
+  animation: slideIn 0.3s ease;
+  box-sizing: border-box;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Media queries pour petits écrans */
+@media (max-width: 768px) {
+  .nav {
+    font-size: 1.8rem;
+  }
+  .comment-button {
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav {
+    font-size: 1.5rem;
+    padding: 4px 8px;
+  }
+  .comment-button {
+    width: 95%;
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+  .modal-content {
+    width: 95%;
+    padding: 15px;
+  }
 }

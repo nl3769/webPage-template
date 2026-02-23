@@ -1,29 +1,52 @@
+// src/components/Carousel.tsx
 import React, { useState, useEffect } from "react";
+import ReviewForm from "./ReviewForm";
+import Avis, { AvisType } from "./Avis";
 
 interface CarouselProps {
   images: string[];
 }
 
-interface Avis {
-  _id: string;
-  note: number;
-  commentaire: string;
-  createdAt: string;
-}
-
 const Carousel: React.FC<CarouselProps> = ({ images }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [avisList, setAvisList] = useState<Avis[]>([]);
+  const [avisList, setAvisList] = useState<AvisType[]>([]);
   const [loading, setLoading] = useState(false);
-  const [commentaire, setCommentaire] = useState("");
-  const [note, setNote] = useState(5);
+  const [formVisible, setFormVisible] = useState(false);
+  const [width, setWidth] = useState(window.innerWidth);
 
-  const nextImage = () => setCurrentIndex((prev) => (prev + 1) % images.length);
+  // Resize
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const nextImage = () =>
+    setCurrentIndex((prev) => (prev + 1) % images.length);
   const prevImage = () =>
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
 
-  const envoyerAvis = async () => {
-    if (!commentaire.trim()) return alert("❌ Merci d'écrire un commentaire !");
+  // Charger avis
+  const chargerAvis = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/avis");
+      const data: AvisType[] = await res.json();
+      setAvisList(data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    chargerAvis();
+  }, []);
+
+  // Envoyer avis
+  const envoyerAvis = async (note: number, commentaire: string) => {
+    if (!commentaire.trim()) {
+      alert("❌ Merci d'écrire un commentaire !");
+      return;
+    }
     setLoading(true);
     try {
       const response = await fetch("http://localhost:5000/api/avis", {
@@ -31,12 +54,10 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ note, commentaire }),
       });
-
       if (response.ok) {
         alert("✅ Avis envoyé !");
-        setCommentaire(""); // vide le champ après envoi
-        setNote(5);
         chargerAvis();
+        setFormVisible(false);
       } else {
         alert("❌ Erreur lors de l'envoi");
       }
@@ -48,72 +69,41 @@ const Carousel: React.FC<CarouselProps> = ({ images }) => {
     }
   };
 
-  const chargerAvis = async () => {
-    try {
-      const response = await fetch("http://localhost:5000/api/avis");
-      const data: Avis[] = await response.json();
-      setAvisList(data);
-    } catch (err) {
-      console.error("Erreur lors du chargement des avis :", err);
-    }
-  };
-
-  useEffect(() => {
-    chargerAvis();
-  }, []);
+  const containerWidth = width > 600 ? 600 : width * 0.9;
 
   return (
     <div className="carousel">
-      <div className="carousel-image-container">
+      {/* Carousel images */}
+      <div className="carousel-image-container" style={{ width: containerWidth }}>
         <img src={images[currentIndex]} alt={`Photo ${currentIndex + 1}`} />
         <div className="nav left" onClick={prevImage}>❮</div>
         <div className="nav right" onClick={nextImage}>❯</div>
       </div>
 
-      {/* Formulaire pour écrire un avis */}
-      <div style={{ width: "600px", marginTop: "15px" }}>
-        <label>
-          Note :
-          <input
-            type="number"
-            min={1}
-            max={5}
-            value={note}
-            onChange={(e) => setNote(Number(e.target.value))}
-            style={{ marginLeft: "8px", width: "50px" }}
-          />
-        </label>
-        <br />
-        <label>
-          Commentaire :
-          <textarea
-            value={commentaire}
-            onChange={(e) => setCommentaire(e.target.value)}
-            rows={3}
-            style={{ width: "100%", marginTop: "5px", padding: "5px" }}
-          />
-        </label>
-        <button onClick={envoyerAvis} disabled={loading} style={{ marginTop: "10px" }}>
-          {loading ? "Envoi..." : "Envoyer un avis"}
-        </button>
-      </div>
+      {/* Bouton pour afficher le formulaire */}
+      <button
+        className="comment-button"
+        onClick={() => setFormVisible(true)}
+        style={{ width: containerWidth }}
+      >
+        Laisser un commentaire
+      </button>
 
-      <div className="avis-list">
-        <h3>Avis des utilisateurs :</h3>
-        {avisList.length === 0 ? (
-          <p>Aucun avis pour le moment.</p>
-        ) : (
-          <ul>
-            {avisList.map((avis) => (
-              <li key={avis._id}>
-                <strong>Note :</strong> {avis.note} |{" "}
-                <strong>Commentaire :</strong> {avis.commentaire} |{" "}
-                <em>{new Date(avis.createdAt).toLocaleString()}</em>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      {/* Modal Mail */}
+      {formVisible && (
+        <div className="modal-overlay">
+          <div className="modal-content" style={{ width: containerWidth }}>
+            <ReviewForm
+              onSubmit={envoyerAvis}
+              onCancel={() => setFormVisible(false)}
+              loading={loading}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Liste des avis */}
+      <Avis avisList={avisList} />
     </div>
   );
 };

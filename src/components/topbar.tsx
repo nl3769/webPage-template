@@ -1,23 +1,13 @@
 // src/components/TopBar.tsx
-import React, { useState } from "react";
+import React from "react";
 import logo from "/images/logo/logo.png";
-import MenuPrestations from "./MenuPrestations";
 
 interface TopBarProps {
-  showContact: boolean;
-  setShowContact: (show: boolean) => void;
-  onSelectPrestation?: (item: string) => void;
+  page: "Accueil" | "Prestations" | "Contact";
+  setPage: (page: "Accueil" | "Prestations" | "Contact") => void;
 }
 
-const TopBar: React.FC<TopBarProps> = ({
-  showContact,
-  setShowContact,
-  onSelectPrestation,
-}) => {
-  const [showPrestations, setShowPrestations] = useState(false);
-
-  const prestationsItems = ["Chambre", "Menu", "Activité", "Spa"];
-
+const TopBar: React.FC<TopBarProps> = ({ page, setPage }) => {
   return (
     <div className="top-bar">
       <div className="logo-container">
@@ -26,23 +16,22 @@ const TopBar: React.FC<TopBarProps> = ({
 
       <div className="nav-links">
         <button
-          className={!showContact ? "active" : ""}
-          onClick={() => setShowContact(false)}
+          className={page === "Accueil" ? "active" : ""}
+          onClick={() => setPage("Accueil")}
         >
           Accueil
         </button>
 
-        <MenuPrestations
-          items={prestationsItems}
-          onSelect={(item) => {
-            setShowPrestations(false);
-            onSelectPrestation && onSelectPrestation(item);
-          }}
-        />
+        <button
+          className={page === "Prestations" ? "active" : ""}
+          onClick={() => setPage("Prestations")}
+        >
+          Prestations
+        </button>
 
         <button
-          className={showContact ? "active" : ""}
-          onClick={() => setShowContact(true)}
+          className={page === "Contact" ? "active" : ""}
+          onClick={() => setPage("Contact")}
         >
           Contact
         </button>

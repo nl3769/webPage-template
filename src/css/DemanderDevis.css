@@ -1,0 +1,125 @@
+/* Bouton flottant */
+.quote-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 14px 22px;
+  font-size: 16px;
+  border-radius: 50px;
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 50;
+}
+
+/* Overlay */
+.quote-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+/* Formulaire */
+.quote-form-container {
+  display: flex;
+  flex-direction: column;
+  width: 80vw;
+  max-width: 700px;
+  height: 80vh;        /* Formulaire 80% hauteur écran */
+  max-height: 90vh;
+  padding: 24px;
+  border-radius: 14px;
+  background-color: #2e2e2e;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  gap: 12px;
+  overflow: hidden;    /* Desktop: pas de scroll */
+}
+
+/* Ligne Nom + Email */
+.quote-row {
+  display: flex;
+  gap: 16px;
+}
+
+.quote-row label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Zone Message */
+.quote-message-wrapper {
+  flex: 1;                /* prend tout l’espace restant */
+  display: flex;
+  flex-direction: column;
+}
+
+.quote-message-wrapper label {
+  margin-bottom: 4px;
+}
+
+.quote-message-wrapper textarea {
+  flex: 1;                /* rempli le wrapper */
+  width: 100%;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #555;
+  background-color: #3e3e3e;
+  color: #fff;
+  resize: vertical;
+}
+
+/* Actions (boutons) */
+.quote-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.quote-actions button {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.quote-actions .send {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.quote-actions .cancel {
+  background-color: #999;
+  color: #fff;
+}
+
+/* Status */
+.status-message {
+  margin-top: 8px;
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Responsive mobile */
+@media (max-width: 700px) {
+  .quote-form-container {
+    height: 70vh;
+    padding: 16px;
+    overflow-y: auto;   /* Scroll si nécessaire */
+  }
+
+  .quote-row {
+    flex-direction: column;
+  }
+
+  .quote-message-wrapper textarea {
+    flex: unset;
+    height: 200px;      /* Hauteur fixe pour mobile */
+  }
+}

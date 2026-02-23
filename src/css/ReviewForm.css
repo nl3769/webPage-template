@@ -1,0 +1,100 @@
+/* src/css/Mail.css */
+
+.mail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  background: #333;
+  color: #fff;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.mail-section label {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-weight: bold;
+}
+
+.mail-section input,
+.mail-section textarea {
+  padding: 8px;
+  border-radius: 4px;
+  border: none;
+  font-size: 1rem;
+}
+
+.mail-section button {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: #ff7e5f;
+  color: #fff;
+  cursor: pointer;
+}
+
+.mail-section button:hover {
+  background-color: #feb47b;
+}
+
+/* Étoiles stylisées */
+.star-rating {
+  display: flex;
+  gap: 5px;
+  font-size: 1.5rem;
+}
+
+.star {
+  cursor: pointer;
+  color: #ccc;
+  transition: color 0.2s;
+}
+
+.star.filled {
+  color: gold;
+}
+
+.mail-buttons {
+  display: flex;
+  justify-content: center;  /* centre horizontalement */
+  gap: 15px;                /* espace entre les boutons */
+  margin-top: 15px;
+}
+
+.mail-buttons button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Bouton Envoyer */
+.btn-submit {
+  background-color: #ff7e5f;
+  color: #fff;
+}
+
+.btn-submit:hover {
+  background-color: #feb47b;
+}
+
+/* Bouton Annuler */
+.btn-cancel {
+  background-color: #aaa;
+  color: #fff;
+}
+
+.btn-cancel:hover {
+  background-color: #888;
+}
+
+/* Désactivé */
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
