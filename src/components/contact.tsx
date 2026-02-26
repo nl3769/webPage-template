@@ -1,7 +1,7 @@
 import React from "react";
 
 const Contact: React.FC = () => {
-  const adresse = encodeURIComponent("123 Rue Exemple, XXXXXXX BLABAL");
+  const adresse = encodeURIComponent("11 rue des moulins, 37190, Vallères");
 
   return (
     <footer className="contact-footer">
@@ -16,7 +16,7 @@ const Contact: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                123 Rue Exemple, XXXXXXX BLABAL
+                11 rue des moulins, 37190, Vallères
               </a>
             </p>
           </div>
