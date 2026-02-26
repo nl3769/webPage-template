@@ -1,3 +1,4 @@
+// src/components/DemanderDevis.tsx
 import React, { useState } from "react";
 import SendMail from "./SendMail";
 
@@ -21,8 +22,7 @@ const DemanderDevis: React.FC = () => {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState(DEFAULT_MESSAGE);
 
-  const [showSendMail, setShowSendMail] = useState(false);
-  const [sendMailTrigger, setSendMailTrigger] = useState(0);
+  const [sendTrigger, setSendTrigger] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
   const [pendingSend, setPendingSend] = useState(false);
 
@@ -31,9 +31,10 @@ const DemanderDevis: React.FC = () => {
       alert("❌ Merci de remplir tous les champs !");
       return;
     }
-    setShowSendMail(true);
+
     setPendingSend(true);
-    setSendMailTrigger((t) => t + 1);
+    setStatusMessage(null);
+    setSendTrigger(true); // déclenche l'envoi dans SendMail
   };
 
   const handleMailResult = (success: boolean, msg: string) => {
@@ -45,9 +46,9 @@ const DemanderDevis: React.FC = () => {
       setEmail("");
       setMessage(DEFAULT_MESSAGE);
       setOpen(false);
-      setTimeout(() => setShowSendMail(false), 1200);
+      setSendTrigger(false); // reset trigger
     } else {
-      setTimeout(() => setShowSendMail(false), 2000);
+      setTimeout(() => setSendTrigger(false), 2000); // reset pour retry manuel
     }
   };
 
@@ -70,7 +71,6 @@ const DemanderDevis: React.FC = () => {
           >
             <h3>Demande de devis</h3>
 
-            {/* Ligne Nom + Email */}
             <div className="quote-row">
               <label>
                 Nom
@@ -91,7 +91,6 @@ const DemanderDevis: React.FC = () => {
               </label>
             </div>
 
-            {/* Zone Message */}
             <div className="quote-message-wrapper">
               <label>Message</label>
               <textarea
@@ -100,7 +99,6 @@ const DemanderDevis: React.FC = () => {
               />
             </div>
 
-            {/* Boutons */}
             <div className="quote-actions">
               <button
                 className="send"
@@ -126,13 +124,13 @@ const DemanderDevis: React.FC = () => {
       )}
 
       {/* Modal SendMail */}
-      {showSendMail && (
+      {sendTrigger && (
         <div className="quote-modal-overlay">
           <div className="quote-modal-content">
             <SendMail
-              formData={{ name, email, message }}
+              formData={{ user_name: name, user_email: email, message }}
               onResult={handleMailResult}
-              resetTrigger={sendMailTrigger}
+              sendTrigger={sendTrigger}
             />
             {statusMessage && (
               <p className="status-message mt-2">{statusMessage}</p>
