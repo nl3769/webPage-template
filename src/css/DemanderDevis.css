@@ -37,8 +37,8 @@
   max-height: 90vh;
   padding: 24px;
   border-radius: 14px;
-  background-color: #2e2e2e;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  background-color: #555252;
+  box-shadow: 0 10px 30px rgba(63, 63, 63, 0.5);
   gap: 16px;
   overflow: hidden;
 }
