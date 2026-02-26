@@ -46,9 +46,9 @@ const DemanderDevis: React.FC = () => {
       setEmail("");
       setMessage(DEFAULT_MESSAGE);
       setOpen(false);
-      setSendTrigger(false); // reset trigger
+      setSendTrigger(false);
     } else {
-      setTimeout(() => setSendTrigger(false), 2000); // reset pour retry manuel
+      setTimeout(() => setSendTrigger(false), 2000);
     }
   };
 
@@ -71,6 +71,7 @@ const DemanderDevis: React.FC = () => {
           >
             <h3>Demande de devis</h3>
 
+            {/* Nom + Email */}
             <div className="quote-row">
               <label>
                 Nom
@@ -78,6 +79,7 @@ const DemanderDevis: React.FC = () => {
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
+                  placeholder="Votre nom"
                 />
               </label>
 
@@ -87,10 +89,12 @@ const DemanderDevis: React.FC = () => {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  placeholder="adresse@email.com"
                 />
               </label>
             </div>
 
+            {/* Message */}
             <div className="quote-message-wrapper">
               <label>Message</label>
               <textarea
@@ -99,6 +103,7 @@ const DemanderDevis: React.FC = () => {
               />
             </div>
 
+            {/* Actions */}
             <div className="quote-actions">
               <button
                 className="send"
