@@ -28,13 +28,6 @@ const TopBar: React.FC<TopBarProps> = ({ page, setPage }) => {
         >
           Prestations
         </button>
-
-        <button
-          className={page === "Contact" ? "active" : ""}
-          onClick={() => setPage("Contact")}
-        >
-          Contact
-        </button>
       </div>
     </div>
   );

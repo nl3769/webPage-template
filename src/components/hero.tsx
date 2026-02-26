@@ -8,10 +8,9 @@ const images = load_prestation_example_images();
 const Hero: React.FC = () => (
   <section className="hero">
     <div className="hero-content">
-      <h2>Welcome to my page</h2>
+      <h2>NOM ENTREPRISE - ACTIVITE</h2>
       <p>
-        Blabla. Blablabla blablablab abblabla. Blablabla blablablab ab.blabla.
-        Blablabla blablablab ab blabla. Blablabla blablablab ab v
+        il faut bosser avec nous parce que truc. Aussi on propose ces services, donc machin truc. Aussi on a bcp d'experience, et la satisfaction clientele et notre priorité et mahcin truc.
       </p>
       <Carousel images={images} />
     </div>
