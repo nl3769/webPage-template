@@ -1,12 +1,12 @@
 /* Footer principal */
 .contact-footer {
   background: linear-gradient(90deg, #FFF8F0, #F5F0E1);
-  color: #333;
-  padding: 25px 20px;
+  padding: 30px 20px;
   font-family: "Inter", "Helvetica", sans-serif;
   border-top: 2px solid #d4c9b3;
   box-shadow: 0 -4px 15px rgba(0,0,0,0.08);
   box-sizing: border-box;
+  color: #333;
 }
 
 /* Container central */
@@ -17,49 +17,60 @@
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  flex-wrap: wrap; /* sur mobile, ça passera à la ligne */
+  flex-wrap: wrap;
 }
 
-/* Cartes contact en ligne */
+/* Cartes contact */
 .contact-cards {
   display: flex;
-  gap: 25px;
-  flex-wrap: nowrap; /* tout sur une ligne */
+  gap: 20px;
+  flex-wrap: nowrap; /* ligne unique sur desktop/tablette */
 }
 
 /* Carte individuelle */
 .contact-card {
-  background-color: #fff8f0;
   padding: 15px 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 14px;
   display: flex;
   align-items: center;
   gap: 10px;
-  transition: transform 0.3s, box-shadow 0.3s;
+  min-width: 160px;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #333;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  cursor: default;
 }
 
+/* Cartes avec fond léger dégradé et couleur icône */
+.address-card {
+  background: linear-gradient(135deg, #FFFAF0, #FFEBD2);
+}
+
+.phone-card {
+  background: linear-gradient(135deg, #F0FFF8, #D2FFE8);
+}
+
+.email-card {
+  background: linear-gradient(135deg, #F0F8FF, #D2E8FF);
+}
+
+/* Hover micro-animation */
 .contact-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
-/* Icones */
+/* Icones colorées */
 .contact-card .icon {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
-/* Texte et liens */
-.contact-card p {
-  margin: 0;
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-
+/* Liens */
 .contact-card a {
   color: #333;
   text-decoration: none;
-  transition: color 0.3s, transform 0.2s;
+  transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .contact-card a:hover {
@@ -67,27 +78,53 @@
   transform: scale(1.05);
 }
 
-/* Copyright */
-.contact-footer .copyright {
-  text-align: right;
-  font-size: 0.95rem;
-  opacity: 0.85;
+/* Texte et alignement */
+.contact-card p {
+  margin: 0;
+  line-height: 1.3;
 }
 
-@media (max-width: 768px) {
+/* Copyright */
+.contact-footer .copyright {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  text-align: right;
+}
+
+@media (max-width: 1024px) {
   .contact-footer .container {
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     align-items: center;
   }
-  
-  .contact-footer .contact-cards {
+
+  .contact-cards {
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     gap: 15px;
   }
-  
+
+  .contact-card {
+    flex: 1 1 45%; /* cartes prennent la moitié sur tablette */
+    max-width: 250px;
+    justify-content: flex-start;
+  }
+
   .contact-footer .copyright {
     text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-card {
+    flex: 1 1 90%; /* mobile full width */
+    justify-content: flex-start;
+    font-size: 1rem;
+    padding: 12px 15px;
+  }
+
+  .contact-card .icon {
+    font-size: 1.3rem;
   }
 }
