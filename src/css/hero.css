@@ -1,24 +1,67 @@
 /* ===================== Hero ===================== */
 .hero {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background: transparent;
-    padding: 40px 20px;
-    text-align: center;
-    color: #fff;
-  }
-  
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: transparent;
+  padding: 40px 20px;
+  text-align: center;
+  color: #fff;
+}
+
+/* Titre principal */
+.hero h2 {
+  max-width: 60vw;           /* largeur réduite sur desktop */
+  font-size: 50px;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+}
+
+/* Paragraphe descriptif */
+.hero p {
+  max-width: 30vw;           /* largeur réduite pour texte plus compact */
+  margin: 0 auto 30px;       /* centre le bloc horizontalement + margin-bottom */
+  text-align: center;        /* centre le texte à l'intérieur du bloc */
+  font-size: 18px;
+  line-height: 1.5;
+}
+
+/* ===================== Responsive ===================== */
+@media (max-width: 1024px) {
   .hero h2 {
-    font-size: 50px;
-    margin-bottom: 15px;
-    text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+      max-width: 70vw;
+      font-size: 42px;
   }
-  
+
   .hero p {
-    font-size: 18px;
-    margin-bottom: 60px;
+      max-width: 50vw;
+      font-size: 16px;
   }
+}
+
+@media (max-width: 768px) {
+  .hero h2 {
+      max-width: 80vw;
+      font-size: 36px;
+  }
+
+  .hero p {
+      max-width: 70vw;
+      font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h2 {
+      max-width: 90vw;
+      font-size: 28px;
+  }
+
+  .hero p {
+      max-width: 85vw;
+      font-size: 14px;
+  }
+}

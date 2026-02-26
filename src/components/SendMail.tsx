@@ -1,60 +1,61 @@
 // src/components/SendMail.tsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 
 interface SendMailProps {
   formData: { user_name: string; user_email: string; message: string };
   onResult: (success: boolean, message: string) => void;
-  sendTrigger: boolean; // déclenché quand l'utilisateur clique sur Envoyer
+  sendTrigger: boolean;
 }
 
 const SendMail: React.FC<SendMailProps> = ({ formData, onResult, sendTrigger }) => {
   const [loading, setLoading] = useState(false);
-  const [sentOnce, setSentOnce] = useState(false); // empêche double envoi
+  const [sentOnce, setSentOnce] = useState(false);
 
   const sendMail = async () => {
-    if (loading || sentOnce) return; // si déjà envoyé ou en cours, on bloque
+    if (loading || sentOnce) return;
+
     if (!formData.user_name || !formData.user_email || !formData.message) {
       onResult(false, "❌ Veuillez remplir tous les champs !");
       return;
     }
 
-    setLoading(true);
-    let timedOut = false;
+    // Vérification simple email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.user_email)) {
+      onResult(false, "❌ Email invalide !");
+      return;
+    }
 
-    const timeoutId = setTimeout(() => {
-      timedOut = true;
-      setLoading(false);
-      onResult(false, "⏱️ Délai d'envoi dépassé !");
-    }, 10000);
+    setLoading(true);
+
+    const templateParams = {
+      name: formData.user_name,
+      email: formData.user_email,
+      message: formData.message,
+      title: "Nouveau message depuis le site",
+      time: new Date().toLocaleString("fr-FR"),
+    };
 
     try {
-      console.log("Envoi du mail avec les données :", formData);
       await emailjs.send(
         "service_c94tqpj",
         "template_si182zr",
-        formData,
+        templateParams,
         "cT0LHAtAA9KW7r4Kn"
       );
 
-      if (!timedOut) {
-        clearTimeout(timeoutId);
-        setLoading(false);
-        setSentOnce(true);
-        onResult(true, "✅ Message envoyé avec succès !");
-      }
+      setSentOnce(true);
+      onResult(true, "✅ Message envoyé avec succès !");
     } catch (error: any) {
-      if (!timedOut) {
-        clearTimeout(timeoutId);
-        setLoading(false);
-        onResult(false, `❌ Erreur : ${error.message || "Impossible d'envoyer le mail"}`);
-        console.error(error);
-      }
+      console.error("Erreur EmailJS :", error);
+      onResult(false, "❌ Impossible d'envoyer le message.");
+    } finally {
+      setLoading(false);
     }
   };
 
-  // Déclenche l'envoi uniquement quand sendTrigger devient true
-  React.useEffect(() => {
+  useEffect(() => {
     if (sendTrigger) {
       sendMail();
     }
@@ -62,11 +63,22 @@ const SendMail: React.FC<SendMailProps> = ({ formData, onResult, sendTrigger }) 
   }, [sendTrigger]);
 
   return (
-    <div>
-      <button onClick={sendMail} disabled={loading || sentOnce}>
-        {loading ? "Envoi..." : sentOnce ? "Envoyé" : "Réessayer"}
-      </button>
-    </div>
+    <>
+      {loading && (
+        <div className="loading-overlay">
+          <div className="loading-box">
+            <div className="spinner"></div>
+            <p>Envoi en cours...</p>
+          </div>
+        </div>
+      )}
+  
+      <div>
+        <button onClick={sendMail} disabled={loading || sentOnce}>
+          {loading ? "Envoi..." : sentOnce ? "Envoyé" : "Envoyer"}
+        </button>
+      </div>
+    </>
   );
 };
 

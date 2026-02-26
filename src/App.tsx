@@ -42,6 +42,7 @@ const App: React.FC = () => {
       <DemanderDevis />
     </div>
   );
+  
 };
 
 export default App;
