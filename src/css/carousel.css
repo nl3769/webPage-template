@@ -15,14 +15,16 @@
   border-radius: 10px;
   width: 90%;
   max-width: 600px;
+  height: 400px; /* hauteur fixe pour toutes les images */
   margin: 0 auto;
 }
 
 .carousel-image-container img {
   width: 100%;
+  height: 100%;       /* prend toute la hauteur du conteneur */
+  object-fit: cover;  /* ajuste l'image pour remplir le conteneur sans la déformer */
   display: block;
   border-radius: 10px;
-  height: auto;
 }
 
 .nav {
