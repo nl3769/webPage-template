@@ -16,24 +16,26 @@ const App: React.FC = () => {
   const [page, setPage] = useState<Page>("Accueil");
 
   return (
-    <div className="flex-1">
+  <>
+    {/* Layout principal */}
+    <div className="flex flex-col min-h-screen">
       {/* Topbar */}
       <TopBar page={page} setPage={setPage} />
 
-      {/* Contenu principal */}
+      {/* Contenu principal qui prend tout l’espace restant */}
       <main className="flex-1">
         {page === "Accueil" && <Hero />}
         {page === "Prestations" && <Prestations />}
-        {/* On supprime le Contact ici */}
       </main>
-
-      {/* Footer Contact affiché sur toutes les pages */}
-      <Contact />
-
-      {/* Toujours affiché */}
-      <DemanderDevis />
     </div>
-  );
+
+    {/* Footer hors du container flex-1 */}
+    <Contact />
+
+    {/* Bouton flottant toujours visible */}
+    <DemanderDevis />
+  </>
+);
   
 };
 
