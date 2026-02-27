@@ -1,18 +1,16 @@
-/* src/css/Prestations.css */
-
 .prestations-page {
   width: 100%;
-  overflow-y: scroll; /* pour défiler verticalement */
-  scroll-snap-type: y mandatory; /* pour “snap” sur chaque section */
-  height: calc(100vh - 60px); /* 60px = hauteur du TopBar */
+  min-height: calc(100vh - 60px); /* pour que la première section prenne au moins la hauteur du viewport */
+  scroll-snap-type: y mandatory; /* snap si tu veux */
+  /* overflow-y: scroll; <-- supprimer */
 }
 
 .prestations-section {
-  height: 100vh;
+  min-height: 100vh; /* ou height: auto si tu veux */
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 2rem;
   font-weight: bold;
-  scroll-snap-align: start; /* chaque section “snap” au début */
+  scroll-snap-align: start;
 }
