@@ -1,22 +1,14 @@
 import React, { useState } from "react";
 
-import TopBar from "./components/topbar";
-import Hero from "./components/hero";
-import Contact from "./components/contact"; // Footer
+import TopBar from "./components/TopBar";
+import Hero from "./components/Hero";
+import Contact from "./components/Contact"; // Footer
 import Prestations from "./components/Prestations";
 import DemanderDevis from "./components/DemanderDevis";
 
-import "./css/base.css";
-import "./css/carousel.css";
-import "./css/contact.css";
-import "./css/hero.css";
-import "./css/layout.css";
-import "./css/responsive.css";
-import "./css/topbar.css";
-import "./css/Prestations.css";
-import "./css/DemanderDevis.css";
-import "./css/ReviewForm.css";
-import "./css/Avis.css";
+import "./css/Base.css";
+import "./css/Layout.css";
+import "./css/Responsive.css";
 
 type Page = "Accueil" | "Prestations";
 

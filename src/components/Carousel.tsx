@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import ReviewForm from "./ReviewForm";
 import Avis, { AvisType } from "./Avis";
 
+import "../css/Carousel.css";
+
 interface CarouselProps {
   images: string[];
 }

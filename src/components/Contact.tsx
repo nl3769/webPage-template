@@ -1,5 +1,7 @@
 import React from "react";
 
+import "../css/Contact.css";
+
 const Contact: React.FC = () => {
   const adresse = encodeURIComponent("11 rue des moulins, 37190, Vallères");
 

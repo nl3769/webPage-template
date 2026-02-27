@@ -2,6 +2,8 @@
 import React from "react";
 import logo from "/images/logo/logo.png";
 
+import "../css/TopBar.css";
+
 interface TopBarProps {
   page: "Accueil" | "Prestations" | "Contact";
   setPage: (page: "Accueil" | "Prestations" | "Contact") => void;

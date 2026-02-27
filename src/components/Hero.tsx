@@ -1,7 +1,9 @@
 // src/components/Hero.tsx
 import React from "react";
-import Carousel from "./carousel";
+import Carousel from "./Carousel";
 import { load_prestation_example_images } from "../utils/loader";
+
+import "../css/Hero.css";
 
 const images = load_prestation_example_images();
 

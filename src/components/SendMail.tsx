@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
 
+import "../css/SendMail.css";
+
 interface SendMailProps {
   formData: { user_name: string; user_email: string; message: string };
   onResult: (success: boolean, message: string) => void;

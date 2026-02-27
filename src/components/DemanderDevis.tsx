@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import SendMail from "./SendMail";
 
+import "../css/DemanderDevis.css";
+
 const DEFAULT_MESSAGE = `Bonjour,
 
 Je souhaiterais obtenir un devis pour la prestation suivante :

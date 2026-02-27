@@ -1,6 +1,8 @@
 // src/components/Prestations.tsx
 import React from "react";
 
+import "../css/Prestations.css";
+
 const gradients = [
   "linear-gradient(135deg, #252524, #726e6b)",
   "linear-gradient(135deg, #726e6b, #252524)",
