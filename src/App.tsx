@@ -16,7 +16,7 @@ const App: React.FC = () => {
   const [page, setPage] = useState<Page>("Accueil");
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex-1">
       {/* Topbar */}
       <TopBar page={page} setPage={setPage} />
 
