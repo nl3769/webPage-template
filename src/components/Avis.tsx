@@ -1,7 +1,15 @@
 // src/components/AvisCarousel.tsx
 import React, { useState } from "react";
 import "../css/Avis.css";
-import { AvisType } from "./Avis";
+
+export interface AvisType {
+  _id: string;
+  note: number;
+  commentaire: string;
+  nom: string;
+  prenom: string;
+  createdAt: string;
+}
 
 interface AvisCarouselProps {
   avisList: AvisType[];
@@ -38,18 +46,24 @@ const AvisCarousel: React.FC<AvisCarouselProps> = ({ avisList }) => {
         </button>
 
         <div className="avis-card">
+          {/* Nom et prénom au-dessus */}
+          <div className="user-name">
+            {avis.nom.charAt(0)}. {avis.prenom}
+          </div>
+
           <div className="note-date">
             <span className="star-rating">
               {"★".repeat(avis.note) + "☆".repeat(5 - avis.note)}
             </span>
             <span>
               {new Date(avis.createdAt).toLocaleDateString("fr-FR", {
-                day: "numeric",      // sans 0 devant
-                month: "long",       // affiche le nom complet du mois
+                day: "numeric",
+                month: "long",
                 year: "numeric",
               })}
             </span>
           </div>
+
           <div className="commentaire">{avis.commentaire}</div>
         </div>
 

@@ -1,4 +1,14 @@
 /* src/css/Avis.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+/* Nom de l'utilisateur */
+.user-name {
+  font-family: 'Poppins', sans-serif;  /* police moderne et lisible */
+  font-weight: 600;                     /* semi-bold */
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+  text-align: center;
+  color: #ffffff;                       /* doré pour se détacher sur le fond */
+}
 
 .star-rating {
   color: gold;

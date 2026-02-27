@@ -1,22 +1,75 @@
 import React, { useState } from "react";
-
 import "../css/ReviewForm.css";
 
 interface ReviewFormProps {
-  onSubmit: (note: number, commentaire: string) => void;
   onCancel: () => void;
   loading: boolean;
 }
 
-const Mail: React.FC<ReviewFormProps> = ({ onSubmit, onCancel, loading }) => {
+const ReviewForm: React.FC<ReviewFormProps> = ({ onCancel, loading }) => {
   const [note, setNote] = useState(5);
   const [hoverNote, setHoverNote] = useState<number | null>(null);
   const [commentaire, setCommentaire] = useState("");
+  const [nom, setNom] = useState("");
+  const [prenom, setPrenom] = useState("");
 
-  const handleSubmit = () => onSubmit(note, commentaire);
+  const handleSubmit = async () => {
+    if (!nom.trim() || !prenom.trim()) {
+      alert("Veuillez remplir le nom et le prénom !");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:5000/api/avis", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nom, prenom, note, commentaire }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Erreur lors de l'envoi de l'avis");
+      }
+
+      const data = await response.json();
+      console.log("📝 Avis envoyé :", data);
+
+      // Reset du formulaire
+      setNom("");
+      setPrenom("");
+      setCommentaire("");
+      setNote(5);
+
+      alert("Avis envoyé avec succès !");
+    } catch (err) {
+      console.error(err);
+      alert("Impossible d'envoyer l'avis.");
+    }
+  };
 
   return (
     <div className="mail-section">
+      <div className="name-container">
+        <label className="required-label">
+          Nom
+          <input
+            type="text"
+            value={nom}
+            onChange={(e) => setNom(e.target.value)}
+            required
+          />
+        </label>
+
+        <label className="required-label">
+          Prénom
+          <input
+            type="text"
+            value={prenom}
+            onChange={(e) => setPrenom(e.target.value)}
+            required
+          />
+        </label>
+      </div>
+
       <label>
         Note :
         <div className="star-rating">
@@ -43,16 +96,25 @@ const Mail: React.FC<ReviewFormProps> = ({ onSubmit, onCancel, loading }) => {
         />
       </label>
 
-    <div className="mail-buttons">
+      <div className="mail-buttons">
         <button className="btn-submit" onClick={handleSubmit} disabled={loading}>
-            {loading ? "Envoi..." : "Envoyer"}
+          {loading ? "Envoi..." : "Envoyer"}
         </button>
-        <button className="btn-cancel" onClick={() => { setCommentaire(""); onCancel(); }}>
-            Annuler
+        <button
+          className="btn-cancel"
+          onClick={() => {
+            setNom("");
+            setPrenom("");
+            setCommentaire("");
+            setNote(5);
+            onCancel();
+          }}
+        >
+          Annuler
         </button>
-        </div>
+      </div>
     </div>
   );
 };
 
-export default Mail;
+export default ReviewForm;

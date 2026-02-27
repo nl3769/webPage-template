@@ -1,100 +1,125 @@
-/* src/css/Mail.css */
-
+/* Container principal */
 .mail-section {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 15px;
-  background: #333;
+  gap: 20px;
+  padding: 25px;
+  background: linear-gradient(135deg, #2c2a2a, #413f3f);
   color: #fff;
-  border-radius: 10px;
+  border-radius: 15px;
   width: 100%;
   max-width: 600px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.mail-section label {
+/* Container Nom / Prénom */
+.name-container {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/* Labels obligatoires */
+.mail-section label.required-label {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  flex: 1;
   font-weight: bold;
 }
 
+/* Inputs et textarea */
 .mail-section input,
 .mail-section textarea {
-  padding: 8px;
-  border-radius: 4px;
+  padding: 10px;
+  border-radius: 8px;
   border: none;
   font-size: 1rem;
-}
-
-.mail-section button {
-  padding: 10px;
-  border: none;
-  border-radius: 6px;
-  background-color: #ff7e5f;
+  outline: none;
+  background-color: #4a4848;
   color: #fff;
-  cursor: pointer;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.3);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
 }
 
-.mail-section button:hover {
-  background-color: #feb47b;
+.mail-section input:focus,
+.mail-section textarea:focus {
+  background-color: #5a5858;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.6);
+  transform: scale(1.02);
 }
 
-/* Étoiles stylisées */
+/* Étoiles */
 .star-rating {
   display: flex;
-  gap: 5px;
-  font-size: 1.5rem;
+  gap: 8px;
+  font-size: 1.8rem;
+  justify-content: center;
+  margin: 10px 0;
 }
 
 .star {
   cursor: pointer;
   color: #ccc;
-  transition: color 0.2s;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.star:hover {
+  transform: scale(1.2);
 }
 
 .star.filled {
   color: gold;
 }
 
+/* Commentaire */
+textarea {
+  width: 100%;
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* Boutons */
 .mail-buttons {
   display: flex;
-  justify-content: center;  /* centre horizontalement */
-  gap: 15px;                /* espace entre les boutons */
-  margin-top: 15px;
+  justify-content: center;
+  gap: 20px;
 }
 
 .mail-buttons button {
-  padding: 10px 20px;
+  padding: 12px 25px;
   border: none;
-  border-radius: 8px;
+  border-radius: 50px;
   font-weight: bold;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 
 /* Bouton Envoyer */
 .btn-submit {
-  background-color: #ff7e5f;
+  background: linear-gradient(135deg, #ff7e5f, #feb47b);
   color: #fff;
 }
 
 .btn-submit:hover {
-  background-color: #feb47b;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(255,126,95,0.5);
 }
 
 /* Bouton Annuler */
 .btn-cancel {
-  background-color: #aaa;
+  background-color: #777;
   color: #fff;
 }
 
 .btn-cancel:hover {
-  background-color: #888;
+  background-color: #999;
+  transform: translateY(-2px);
 }
 
-/* Désactivé */
+/* Boutons désactivés */
 button:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
+  box-shadow: none;
 }

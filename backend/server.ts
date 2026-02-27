@@ -63,13 +63,15 @@ app.get("/api/avis", async (req, res) => {
 app.post("/api/avis", async (req, res) => {
   if (!inputCollection) return res.status(500).send("DB non connectée");
   try {
-    const { note, commentaire } = req.body;
-    console.log("Données reçues :", { note, commentaire });
-    if (note === undefined || !commentaire || !commentaire.trim()) {
+    const { nom, prenom, note, commentaire } = req.body;
+    console.log("Données reçues :", req.body);
+    if (note === undefined || !commentaire || !commentaire.trim() || !nom.trim() || !prenom.trim()) {
       return res.status(400).send("Données invalides");
     }
-
+    
     const avis = {
+      nom: nom,
+      prenom: prenom,
       note: note,
       commentaire: commentaire,
       createdAt: new Date()
