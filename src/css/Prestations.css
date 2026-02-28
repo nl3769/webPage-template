@@ -1,16 +1,60 @@
 .prestations-page {
-  width: 100%;
-  min-height: calc(100vh - 60px); /* pour que la première section prenne au moins la hauteur du viewport */
-  scroll-snap-type: y mandatory; /* snap si tu veux */
-  /* overflow-y: scroll; <-- supprimer */
+  scroll-behavior: smooth;
 }
 
 .prestations-section {
-  min-height: 100vh; /* ou height: auto si tu veux */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 2rem;
-  font-weight: bold;
-  scroll-snap-align: start;
+  color: white;
+  padding: 2rem;
+}
+
+/* ===== TOC ===== */
+
+.toc-section {
+  text-align: center;
+}
+
+.toc-container {
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.08);
+  padding: 3rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  max-width: 500px;
+  width: 100%;
+}
+
+.toc-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+}
+
+.toc-list {
+  list-style: none;
+  padding: 0;
+}
+
+.toc-list li {
+  margin: 1rem 0;
+}
+
+.toc-link {
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: white;
+  padding: 0.8rem 1.2rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.toc-link:hover {
+  background: white;
+  color: #252524;
+  transform: translateY(-3px);
 }
