@@ -1,73 +1,79 @@
-/* Footer principal compact */
+/* Footer principal premium */
 .contact-footer {
-  background: linear-gradient(90deg, #FFF8F0, #F5F0E1);
-  padding: 15px 20px; /* padding réduit verticalement */
+  background: linear-gradient(90deg, #e2b683, #F5F0E1);
+  padding: 20px 30px;
   font-family: "Inter", "Helvetica", sans-serif;
   border-top: 2px solid #d4c9b3;
-  box-shadow: 0 -4px 10px rgba(0,0,0,0.08);
-  box-sizing: border-box;
+  box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
   color: #333;
-
-  /* Sticky / natural footer */
-  flex-shrink: 0;  
-  margin-top: auto; 
+  display: flex;
+  justify-content: center; /* centre horizontalement */
+  align-items: center;     /* centre verticalement */
+  flex-direction: column;
 }
 
 /* Container central */
 .contact-footer .container {
-  max-width: 1400px;
-  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* cartes réparties horizontalement */
+  align-items: center;
+  gap: 20px;
+  flex-wrap: nowrap;
+}
+
+/* Cartes contact modernes */
+.contact-cards {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 15px; /* légèrement moins d'espace */
-  flex-wrap: wrap;
+  gap: 20px;
+  width: 100%;
 }
 
-/* Cartes contact */
-.contact-cards {
-  display: flex;
-  gap: 15px;
-  flex-wrap: nowrap; 
-}
-
-/* Carte individuelle compacte */
+/* Carte individuelle stylée */
 .contact-card {
-  padding: 10px 15px; /* padding réduit */
-  border-radius: 10px;
   display: flex;
   align-items: center;
-  gap: 8px; 
-  min-width: 140px; 
+  gap: 12px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 15px;
+  padding: 12px 18px;
+  min-width: 150px;
   font-weight: 600;
-  font-size: 0.95rem; /* texte plus petit */
-  color: #333;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-  cursor: default;
-}
-
-/* Cartes avec fond léger dégradé et couleur icône */
-.address-card {
-  background: linear-gradient(135deg, #FFFAF0, #FFEBD2);
-}
-
-.phone-card {
-  background: linear-gradient(135deg, #F0FFF8, #D2FFE8);
-}
-
-.email-card {
-  background: linear-gradient(135deg, #F0F8FF, #D2E8FF);
-}
-
-/* Hover micro-animation plus discret */
-.contact-card:hover {
-  transform: translateY(-2px);
+  font-size: 1rem;
   box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
-/* Icones colorées plus petites */
+/* Cercles pour icônes */
 .contact-card .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #fff;
   font-size: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+/* Couleurs spécifiques */
+.address-card .icon { background: #a2e484; }
+.phone-card .icon { background: #abe0c8; }
+.email-card .icon { background: #92b8da; }
+
+/* Hover */
+.contact-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.contact-card:hover .icon {
+  transform: scale(1.1);
 }
 
 /* Liens */
@@ -82,55 +88,37 @@
   transform: scale(1.05);
 }
 
-/* Texte et alignement */
-.contact-card p {
-  margin: 0;
-  line-height: 1.2;
-}
-
-/* Copyright compact */
-.contact-footer .copyright {
-  font-size: 0.85rem;
-  opacity: 0.85;
-  text-align: right;
-}
-
+/* Responsive */
 @media (max-width: 1024px) {
   .contact-footer .container {
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     align-items: center;
   }
 
   .contact-cards {
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
   }
 
   .contact-card {
     flex: 1 1 45%;
     max-width: 220px;
     justify-content: flex-start;
-    font-size: 0.9rem;
-    padding: 8px 12px;
-  }
-
-  .contact-footer .copyright {
-    text-align: center;
   }
 }
 
 @media (max-width: 480px) {
   .contact-card {
-    flex: 1 1 90%; 
-    justify-content: flex-start;
-    font-size: 0.85rem;
-    padding: 6px 10px;
+    flex: 1 1 90%;
+    font-size: 0.9rem;
+    padding: 10px 14px;
   }
 
   .contact-card .icon {
+    width: 32px;
+    height: 32px;
     font-size: 1.1rem;
   }
 }

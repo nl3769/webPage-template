@@ -40,9 +40,6 @@ const Contact: React.FC = () => {
           </div>
         </div>
 
-        <div className="copyright">
-          © {new Date().getFullYear()} blablabl. Tous droits réservés.
-        </div>
       </div>
     </footer>
   );
