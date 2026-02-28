@@ -62,7 +62,7 @@ const Carousel: React.FC<{ images: string[], title?: string, description?: strin
 
   return (
     <div className="prestation-carousel-carousel">
-      {title && <h3 className="prestation-carousel-title">{title}</h3>}
+      {title && <h3 className="prestation-carousel-title">{}</h3>}
 
       <div className="prestation-carousel-inner">
         <button className="prestation-carousel-btn prev" onClick={prevSlide}>‹</button>
