@@ -1,41 +1,58 @@
-.prestations-page {
+/* ==========================
+   Global
+========================== */
+html, body, .prestations-page {
+  height: 100%;
+  margin: 0;
+  font-family: "Inter", "Helvetica", sans-serif;
   scroll-behavior: smooth;
+  background-color: #252524;
 }
 
+/* ==========================
+   Sections Prestations
+========================== */
 .prestations-section {
-  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
-  padding: 2rem;
+  min-height: 100vh; /* chaque section prend toute la hauteur */
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* ===== TOC ===== */
-
+/* ==========================
+   Table des matières moderne
+========================== */
 .toc-section {
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
 .toc-container {
+  background: rgba(255,255,255,0.05);
   backdrop-filter: blur(12px);
-  background: rgba(255, 255, 255, 0.08);
-  padding: 3rem;
+  padding: 3rem 4rem;
   border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-  max-width: 500px;
-  width: 100%;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  text-align: center;
+  max-width: 600px;
 }
 
 .toc-title {
-  font-size: 2.5rem;
+  font-size: 3rem;
   margin-bottom: 2rem;
   letter-spacing: 2px;
+  color: white;
 }
 
 .toc-list {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .toc-list li {
@@ -43,18 +60,180 @@
 }
 
 .toc-link {
-  text-decoration: none;
-  font-size: 1.2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
   color: white;
-  padding: 0.8rem 1.2rem;
+  text-decoration: none;
+  padding: 0.8rem 2rem;
   border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.2);
   transition: all 0.3s ease;
-  display: inline-block;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
 }
 
 .toc-link:hover {
   background: white;
   color: #252524;
   transform: translateY(-3px);
+}
+
+.toc-link-arrow {
+  margin-left: 0.5rem;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.toc-link:hover .toc-link-arrow {
+  transform: translateX(5px);
+}
+
+/* ==========================
+   Carousel Prestation pleine page
+========================== */
+.prestation-carousel-carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh; /* prend toute la hauteur */
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.prestation-carousel-title {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.prestation-carousel-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: relative;
+  width: 100%;
+  flex: 1; /* prend tout l'espace vertical disponible */
+}
+
+.prestation-carousel-slide {
+  max-width: 90%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.prestation-carousel-slide img {
+  width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* ==========================
+   Description stylisée magazine
+========================== */
+.prestation-carousel-description-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  animation: fadeInUp 0.8s ease forwards;
+  background: linear-gradient(135deg, rgba(37,37,36,0.9), rgba(114,110,107,0.9));
+  padding: 2rem 0;
+  box-sizing: border-box;
+}
+
+.prestation-carousel-description-box {
+  max-width: 800px;
+  padding: 3rem 4rem;
+  border-radius: 16px;
+  background: rgba(0,0,0,0.6);
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  font-family: 'Playfair Display', serif;
+  color: #fff;
+}
+
+.prestation-carousel-description-title {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #f0f0f0;
+}
+
+.prestation-carousel-description-text {
+  font-size: 1.5rem;
+  line-height: 1.8;
+  font-weight: 400;
+  font-style: italic;
+  color: #eee;
+}
+
+/* Animation douce */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ==========================
+   Boutons navigation
+========================== */
+.prestation-carousel-btn {
+  background: rgba(0,0,0,0.6);
+  border: none;
+  color: white;
+  font-size: 2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+  z-index: 10;
+}
+
+.prestation-carousel-btn:hover {
+  background: rgba(0,0,0,0.9);
+}
+
+.prestation-carousel-btn.prev {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.prestation-carousel-btn.next {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ==========================
+   Responsive
+========================== */
+@media (max-width: 1024px) {
+  .toc-container { max-width: 90%; padding: 2rem 3rem; }
+  .toc-title { font-size: 2.5rem; }
+  .toc-link { font-size: 1.3rem; padding: 0.6rem 1.5rem; }
+  .prestation-carousel-title { font-size: 2rem; }
+  .prestation-carousel-description-box { font-size: 1.3rem; padding: 2rem 3rem; }
+  .prestation-carousel-description-title { font-size: 2rem; }
+}
+
+@media (max-width: 480px) {
+  .toc-title { font-size: 2rem; }
+  .toc-link { font-size: 1.1rem; padding: 0.5rem 1rem; }
+  .prestation-carousel-title { font-size: 1.5rem; }
+  .prestation-carousel-description-box { font-size: 1.1rem; padding: 1.5rem 2rem; min-height: 50vh; }
+  .prestation-carousel-description-title { font-size: 1.5rem; }
 }
